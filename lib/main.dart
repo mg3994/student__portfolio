@@ -37,9 +37,16 @@ class MyApp extends StatelessWidget {
           ),
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.seedColor),
           useMaterial3: true,
+          bottomAppBarTheme: BottomAppBarTheme(
+            elevation: 2,
+            color: Colors.grey.shade100.withOpacity(0.2),
+          ),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              selectedItemColor: AppColors.primaryColor,
-              selectedIconTheme: IconThemeData(color: AppColors.primaryColor)),
+              unselectedIconTheme:
+                  IconThemeData(color: AppColors.unSelectedBNColor),
+              unselectedLabelStyle:
+                  TextStyle(color: AppColors.unSelectedBNColor)),
+          iconTheme: IconThemeData(size: 27),
           tabBarTheme: TabBarTheme(
               dividerColor: AppColors.tabDividerColor,
               dividerHeight: 3,
@@ -49,11 +56,11 @@ class MyApp extends StatelessWidget {
               ),
               labelColor: AppColors.primaryColor,
               labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              unselectedLabelColor: AppColors.unselectedLabelColor,
+              unselectedLabelColor: AppColors.unSelectedLabelColor,
               unselectedLabelStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.unselectedLabelColor))),
+                  color: AppColors.unSelectedLabelColor))),
       home: const HomePage(),
     );
   }

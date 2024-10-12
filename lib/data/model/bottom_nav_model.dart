@@ -7,9 +7,9 @@ List<CustomBottomBarItems> navData = [
   CustomBottomBarItems(label: "Profile", icon: Icons.person),
 ];
 
-class CustomBottomBarItems<T> {
+class CustomBottomBarItems {
   /// pass icon with type IconData
-  final T icon;
+  final IconData icon;
 
   /// pass label with type .
   final String label;
@@ -17,6 +17,5 @@ class CustomBottomBarItems<T> {
   CustomBottomBarItems({
     required this.icon,
     required this.label,
-  }) : assert(icon is IconData || icon is Widget,
-            'CustomBottomBarItems only support IconData and Widget');
+  });
 }

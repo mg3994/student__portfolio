@@ -16,23 +16,13 @@ AppBar _buildAppBar(BuildContext context, TabController tabController) =>
         color: Theme.of(context).iconTheme.color,
       ),
       actions: [
-        Icon(
-          Icons.shopping_bag,
-          color: Theme.of(context)
-              .bottomNavigationBarTheme
-              .selectedIconTheme
-              ?.color,
-        ),
+        Icon(Icons.shopping_bag,
+            color: Theme.of(context).tabBarTheme.labelColor),
         const SizedBox(
           width: 18,
         ),
-        Icon(
-          Icons.notifications,
-          color: Theme.of(context)
-              .bottomNavigationBarTheme
-              .selectedIconTheme
-              ?.color,
-        ),
+        Icon(Icons.notifications,
+            color: Theme.of(context).tabBarTheme.labelColor),
         const SizedBox(
           width: 18,
         ),
