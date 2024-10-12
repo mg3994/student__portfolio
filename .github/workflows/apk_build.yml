@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - '*'  # Trigger on pushes to all branches
+  pull_request:
+    branches:
+      - '*'  # Trigger on pushes to all branches
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions: write-all
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: "Setup Dart and Flutter"
+      uses: subosito/flutter-action@v2 
+      with:
+        channel: 'stable'
+
+    - name: Install dependencies
+      run: flutter pub get
+      
+
+    - name: "Build Flutter Web Project"
+      run: |
+        flutter build  apk --release
+
+    - name: Push into Releases Tab
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/flutter-apk/*"
+        tag: v1.0.${{ github.run_number }}
+        token: ${{ secrets.GITHUB_TOKEN}}

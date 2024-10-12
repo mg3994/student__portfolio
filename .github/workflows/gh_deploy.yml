@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - '*'  # Trigger on pushes to all branches
+  pull_request:
+    branches:
+      - '*'  # Trigger on pushes to all branches
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: "Setup Dart and Flutter"
+      uses: subosito/flutter-action@v2 
+      with:
+        channel: 'stable'
+
+    - name: Install dependencies
+      run: flutter pub get
+      
+
+    - name: "Build Flutter Web Project"
+      
+      run: |
+       
+        flutter build  web --base-href=/${{ github.event.repository.name }}/ 
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+      
+    - name: Upload artifact
+      
+      uses: actions/upload-pages-artifact@v3
+      
+      with:
+          # Upload entire build location
+        path: './build/web/'
+      
+    - name: Deploy to GitHub Pages 
+      id: deployment
+      uses: actions/deploy-pages@v4  
