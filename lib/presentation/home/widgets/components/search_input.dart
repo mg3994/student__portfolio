@@ -33,16 +33,17 @@ class _SearchInputState extends State<SearchInput> {
           widget.onSearch(value);
         },
         decoration: InputDecoration(
-          labelText: 'Search a project',
+          hintText: 'Search a project',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12), // Rounded input box
             borderSide: BorderSide(color: Colors.grey.shade400, width: 2),
           ),
           alignLabelWithHint: true,
-          hintStyle: TextStyle(),
+          suffixIconColor: Colors.white,
           // prefixIcon: Icon(Icons.search),
           suffixIcon: _controller.text.isNotEmpty
               ? IconButton(
+                  color: Colors.black,
                   icon: Icon(Icons.clear),
                   onPressed: () {
                     setState(() {
@@ -51,7 +52,19 @@ class _SearchInputState extends State<SearchInput> {
                     });
                   },
                 )
-              : Icon(Icons.search), // Clear button if there's input
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .tabBarTheme
+                            .labelColor, // Background color of the button
+                        borderRadius:
+                            BorderRadius.circular(12), // Rounded corners
+                      ),
+                      child: Icon(Icons.search)),
+                ), // Clear button if there's input
         ),
       ),
     );

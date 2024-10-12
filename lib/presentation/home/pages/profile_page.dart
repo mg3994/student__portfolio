@@ -57,12 +57,13 @@ class _ProfilePageState extends State<ProfilePage>
           // Filtered list of results
           Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: filteredSummaries.length,
               itemBuilder: (context, index) {
                 final student = filteredSummaries[index];
                 return Card(
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
+                    side: const BorderSide(
                       color: Colors.grey, // Grey stroke for the card
                       width: 1,
                     ),
@@ -72,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage>
                     children: [
                       ClipRRect(
                         clipBehavior: Clip.antiAlias,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10),
                             bottomLeft: Radius.circular(10)), // Image rounded
                         child: Image.asset(
@@ -83,29 +84,72 @@ class _ProfilePageState extends State<ProfilePage>
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Expanded(
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 student.summaryText,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8),
-                              Text(
-                                student.teacherName,
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'Oleh ${student.studentName}',
-                                style: TextStyle(color: Colors.grey[600]),
+                              const SizedBox(height: 8),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        student.teacherName,
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                      Text(
+                                        'Oleh ${student.studentName}',
+                                        style:
+                                            TextStyle(color: Colors.grey[600]),
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    width: 60, // Set width of the icon
+                                    height: 35, // Set height of the icon
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors
+                                              .yellow.shade800, // Darker yellow
+                                          Colors.yellow.shade600,
+                                          Colors
+                                              .yellow.shade400, // Light yellow
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                          4), // Rounded corners
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        student.grade.name,
+                                        style: TextStyle(
+                                          fontSize:
+                                              18, // Adjust font size for the letter
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors
+                                              .white, // White color for the letter
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_portfolio/core/config/themes/app_colors.dart';
+
 import 'package:student_portfolio/data/model/bottom_nav_model.dart';
 import '../pages/profile_page.dart';
 
@@ -88,20 +88,3 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
-
-
-
-  // child: BottomNavigationBar(
-  //           showSelectedLabels: true,
-  //           showUnselectedLabels: true,
-  //           currentIndex: _selectedIndex,
-  //           onTap: (index) {
-  //             setState(() {
-  //               _selectedIndex = index;
-  //             });
-  //           },
-  //           items: navData
-  //               .map((e) =>
-  //                   BottomNavigationBarItem(icon: e.icon, label: e.label))
-  //               .toList(),
-  //         ),
