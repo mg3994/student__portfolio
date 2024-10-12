@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Make APK and Push into release tab
 
 on:
   push:
