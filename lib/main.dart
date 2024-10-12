@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           bottomAppBarTheme: BottomAppBarTheme(
             elevation: 2,
-            color: Colors.grey.shade100.withOpacity(0.2),
+            color: Colors.grey.shade100.withOpacity(0.5),
           ),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               unselectedIconTheme:
