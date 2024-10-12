@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
           ),
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.seedColor),
           useMaterial3: true,
-          iconTheme: const IconThemeData(color: AppColors.primaryColor),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: AppColors.primaryColor,
+              selectedIconTheme: IconThemeData(color: AppColors.primaryColor)),
           tabBarTheme: TabBarTheme(
               dividerColor: AppColors.tabDividerColor,
               dividerHeight: 3,
