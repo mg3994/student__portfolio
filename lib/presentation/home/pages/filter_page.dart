@@ -1,31 +1,18 @@
-library profile_page;
-
 import 'package:flutter/material.dart';
+
 import '../../../data/model/student_model.dart';
-import '../widgets/components/floating_action_button_widget.dart';
 
-import '../../../data/model/tab_model.dart';
-import '../widgets/components/search_input.dart';
-part '../widgets/components/app_bar.dart';
-
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class FilterPage extends StatefulWidget {
+  const FilterPage({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<FilterPage> createState() => _FilterPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>
-    with TickerProviderStateMixin {
-  late final TabController _tabController;
+class _FilterPageState extends State<FilterPage> {
   String query = '';
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-  }
 
-  // Your filtering logic (as before)
+  // Filtering logic
   List<StudentSummary> get filteredSummaries {
     return studentSummaries.where((student) {
       final nameLower = student.studentName.toLowerCase();
@@ -40,19 +27,26 @@ class _ProfilePageState extends State<ProfilePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(context, _tabController),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatingActionButtonWidget(),
+      appBar: AppBar(
+        title: Text('Filter Student Portfolios'),
+      ),
       body: Column(
         children: [
-          // Using the separated SearchInput component
-          SearchInput(
-            initialQuery: query,
-            onSearch: (value) {
-              setState(() {
-                query = value;
-              });
-            },
+          // Search bar
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: (value) {
+                setState(() {
+                  query = value;
+                });
+              },
+              decoration: InputDecoration(
+                labelText: 'Search by name or summary',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.search),
+              ),
+            ),
           ),
           // Filtered list of results
           Expanded(
@@ -61,27 +55,16 @@ class _ProfilePageState extends State<ProfilePage>
               itemBuilder: (context, index) {
                 final student = filteredSummaries[index];
                 return Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.grey, // Grey stroke for the card
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10), // Rounded corners
-                  ),
                   margin: const EdgeInsets.all(8.0),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(10), // Image rounded
-                          child: Image.asset(
-                            student.imageUrl,
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
+                        Image.network(
+                          student.imageUrl,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
                         ),
                         SizedBox(width: 16),
                         Expanded(
@@ -89,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                student.summaryText,
+                                student.studentName,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -97,12 +80,12 @@ class _ProfilePageState extends State<ProfilePage>
                               ),
                               SizedBox(height: 8),
                               Text(
-                                student.teacherName,
+                                student.summaryText,
                                 style: TextStyle(fontSize: 16),
                               ),
                               SizedBox(height: 8),
                               Text(
-                                'Oleh ${student.studentName}',
+                                'Teacher: ${student.teacherName}',
                                 style: TextStyle(color: Colors.grey[600]),
                               ),
                             ],
@@ -115,7 +98,6 @@ class _ProfilePageState extends State<ProfilePage>
               },
             ),
           ),
-          //
         ],
       ),
     );
