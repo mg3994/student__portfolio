@@ -19,32 +19,32 @@ class StudentSummary {
 List<StudentSummary> studentSummaries = [
   StudentSummary(
     studentName: 'Al-Baigi Samaan',
-    summaryText: 'Rangkuman singkat \ndalam Bahasa Sunda.',
+    summaryText: 'Rangkuman singkat dalam Bahasa Sunda.',
     teacherName: 'Bapak Samaan',
     imageUrl: 'assets/1.png',
     grade: Grade.A,
   ),
   StudentSummary(
       studentName: 'Zhare Amara',
-      summaryText: 'Ringkasan teks \n panjang menjadi singkat.',
+      summaryText: 'Ringkasan teks panjang menjadi singkat.',
       teacherName: 'Ibu Amara',
       imageUrl: 'assets/2.png',
       grade: Grade.A),
   StudentSummary(
       studentName: 'Afiq Zhara',
-      summaryText: 'Rangkuman Bahasa \nSunda dengan gaya yang bagus.',
+      summaryText: 'Rangkuman Bahasa Sunda dengan gaya yang bagus.',
       teacherName: 'Pak Zhara',
       imageUrl: 'assets/3.png',
       grade: Grade.A),
   StudentSummary(
       studentName: 'Fauzan Ramdan',
-      summaryText: 'Siswa merangkum \ncerita panjang dengan efektif.',
+      summaryText: 'Siswa merangkum cerita panjang dengan efektif.',
       teacherName: 'Pak Ramdan',
       imageUrl: 'assets/4.png',
       grade: Grade.A),
   StudentSummary(
       studentName: 'Yusuf Ahmad',
-      summaryText: 'Rangkuman dengan \npemahaman tinggi terhadap teks asli.',
+      summaryText: 'Rangkuman dengan pemahaman tinggi terhadap teks asli.',
       teacherName: 'Ibu Ahmad',
       imageUrl: 'assets/5.png',
       grade: Grade.F),
