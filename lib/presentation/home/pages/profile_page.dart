@@ -68,23 +68,25 @@ class _ProfilePageState extends State<ProfilePage>
                     ),
                     borderRadius: BorderRadius.circular(10), // Rounded corners
                   ),
-                  margin: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(10), // Image rounded
-                          child: Image.asset(
-                            student.imageUrl,
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        clipBehavior: Clip.antiAlias,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10)), // Image rounded
+                        child: Image.asset(
+                          student.imageUrl,
+                          width: MediaQuery.of(context).size.width *
+                              0.3, // Responsive width
+                          height: 120, // Fixed height for consistency
+                          fit: BoxFit.cover,
                         ),
-                        SizedBox(width: 16),
-                        Expanded(
+                      ),
+                      SizedBox(width: 8),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -108,8 +110,8 @@ class _ProfilePageState extends State<ProfilePage>
                             ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },
