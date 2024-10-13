@@ -29,14 +29,22 @@ The source code for this app can be found at [https://github.com/mg3994/student-
 ## How to Run
 
 1. Clone the repository.
-2. Open the project in Android Studio.
+```bash
+ git clone https://github.com/mg3994/student__portfolio
+```
+2. Open the project in Android Studio or VS Code.
+> required > Flutter Framework Must be there in system
 3. Run the app on a physical device or emulator.
+```bash
+ flutter run
+```
 
 ## Features
 
-* A home screen that displays a list of students.
-* A details screen that displays information about a selected student.
-* A floating action button that navigates to the details screen.
+* A Profile screen that displays a list of students.
+* A Search Bar that displays information about a selected student.
+* App Bar with action and Leading Title.
+* A floating action button that does Nothing.
 
 ## Tech Stack
 
@@ -45,5 +53,7 @@ The source code for this app can be found at [https://github.com/mg3994/student-
 * Figma
 
 ## License
+Free For Viewers forbid commercialization
+This project is licensed under the GNU General Public License (GPL) . See the LICENSE file for details.
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+## This GNU General Public License is Not Applicable On Figma File 
