@@ -39,131 +39,135 @@ class _ProfilePageState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(context, _tabController),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatingActionButtonWidget(),
-      body: Column(
-        children: [
-          // Using the separated SearchInput component
-          SearchInput(
-            initialQuery: query,
-            onSearch: (value) {
-              setState(() {
-                query = value;
-              });
-            },
-          ),
-          // Filtered list of results
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: filteredSummaries.length,
-              itemBuilder: (context, index) {
-                final student = filteredSummaries[index];
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      color: Colors.grey, // Grey stroke for the card
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10), // Rounded corners
-                  ),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        clipBehavior: Clip.antiAlias,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)), // Image rounded
-                        child: Image.asset(
-                          student.imageUrl,
-                          width: MediaQuery.of(context).size.width *
-                              0.3, // Responsive width
-                          height: 120, // Fixed height for consistency
-                          fit: BoxFit.cover,
+    return LayoutBuilder(
+      builder: (context,constraints) {
+        return Scaffold(
+          appBar: _buildAppBar(context, _tabController),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: const FloatingActionButtonWidget(),
+          body: Column(
+            children: [
+              // Using the separated SearchInput component
+              SearchInput(
+                initialQuery: query,
+                onSearch: (value) {
+                  setState(() {
+                    query = value;
+                  });
+                },
+              ),
+              // Filtered list of results
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: filteredSummaries.length,
+                  itemBuilder: (context, index) {
+                    final student = filteredSummaries[index];
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                          color: Colors.grey, // Grey stroke for the card
+                          width: 1,
                         ),
+                        borderRadius: BorderRadius.circular(10), // Rounded corners
                       ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                student.summaryText,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            clipBehavior: Clip.antiAlias,
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomLeft: Radius.circular(10)), // Image rounded
+                            child: Image.asset(
+                              student.imageUrl,
+                              width: constraints.biggest.width *
+                                  0.3, // Responsive width
+                              height: 120, // Fixed height for consistency
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  Text(
+                                    student.summaryText,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        student.teacherName,
-                                        style: const TextStyle(fontSize: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            student.teacherName,
+                                            style: const TextStyle(fontSize: 16),
+                                          ),
+                                          Text(
+                                            'Oleh ${student.studentName}',
+                                            style:
+                                                TextStyle(color: Colors.grey[600]),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        'Oleh ${student.studentName}',
-                                        style:
-                                            TextStyle(color: Colors.grey[600]),
+                                      Spacer(),
+                                      Container(
+                                        width: 60, // Set width of the icon
+                                        height: 35, // Set height of the icon
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Colors
+                                                  .yellow.shade800, // Darker yellow
+                                              Colors.yellow.shade600,
+                                              Colors
+                                                  .yellow.shade400, // Light yellow
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                              4), // Rounded corners
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            student.grade.name,
+                                            style: TextStyle(
+                                              fontSize:
+                                                  18, // Adjust font size for the letter
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors
+                                                  .white, // White color for the letter
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
-                                  Container(
-                                    width: 60, // Set width of the icon
-                                    height: 35, // Set height of the icon
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors
-                                              .yellow.shade800, // Darker yellow
-                                          Colors.yellow.shade600,
-                                          Colors
-                                              .yellow.shade400, // Light yellow
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                          4), // Rounded corners
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        student.grade.name,
-                                        style: TextStyle(
-                                          fontSize:
-                                              18, // Adjust font size for the letter
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors
-                                              .white, // White color for the letter
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                    );
+                  },
+                ),
+              ),
+              //
+            ],
           ),
-          //
-        ],
-      ),
+        );
+      }
     );
   }
 }
